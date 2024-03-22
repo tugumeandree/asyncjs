@@ -1,0 +1,34 @@
+{
+    "babies": [
+      {
+        "id": 1,
+        "name": "Baby1",
+        "gender": "Female",
+        "age": 1,
+        "location": "DayStar Daycare",
+        "personBroughtBy": "Parent1",
+        "timeOfArrival": "08:00 AM",
+        "parentsNames": ["Parent1", "Parent2"],
+        "feeInUgx": 15000,
+        "periodOfStay": "Half day",
+        "babyNumber": "B123",
+        "image": "https://miro.medium.com/v2/resize:fit:1400/0*sLuob87-05tSJqTx"
+      },
+      {
+        "id": 2,
+        "name": "Baby2",
+        "gender": "Male",
+        "age": 2,
+        "location": "DayStar Daycare",
+        "personBroughtBy": "Parent2",
+        "timeOfArrival": "07:30 AM",
+        "parentsNames": ["Parent2", "Parent3"],
+        "feeInUgx": 20000,
+        "periodOfStay": "Full day",
+        "babyNumber": "B456",
+        "image": "https://www.shutterstock.com/image-photo/2-year-old-african-american-600nw-151329392.jpg" 
+      }
+    ]
+  }
+  
+  

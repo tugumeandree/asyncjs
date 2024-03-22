@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Methods Demo</title>
+</head>
+<body>
+  <h1>HTTP Methods Demo</h1>
+  
+  <!-- Container for displaying the output -->
+  <div id="output"></div>
+
+  <script>
+    // Function to display output
+    function displayOutput(output) {
+      const outputDiv = document.getElementById('output');
+      outputDiv.textContent = output;
+    }
+
+    // Fetch a list of users (GET request)
+    fetch('https://reqres.in/api/users')
+      .then(response => response.json())
+      .then(data => {
+        const users = data.data;
+        const userNames = users.map(user => `${user.first_name} ${user.last_name}`).join(', ');
+        displayOutput(`GET Request - Users: ${userNames}`);
+      })
+      .catch(error => displayOutput(`GET Request - Error: ${error.message}`));
+
+    // Create a new user (POST request)
+    fetch('https://reqres.in/api/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'John Doe',
+        job: 'Developer'
+      })
+    })
+      .then(response => response.json())
+      .then(data => displayOutput(`POST Request - Created User: ${data.name}, Job: ${data.job}`))
+      .catch(error => displayOutput(`POST Request - Error: ${error.message}`));
+
+    // Update a user (PUT request)
+    fetch('https://reqres.in/api/users/2', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: 'Jane Doe',
+        job: 'Manager'
+      })
+    })
+      .then(response => response.json())
+      .then(data => displayOutput(`PUT Request - Updated User: ${data.name}, Job: ${data.job}`))
+      .catch(error => displayOutput(`PUT Request - Error: ${error.message}`));
+
+    // Partially update a user (PATCH request)
+    fetch('https://reqres.in/api/users/2', {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        job: 'Product Manager'
+      })
+    })
+      .then(response => response.json())
+      .then(data => displayOutput(`PATCH Request - Partially Updated User: ${data.name}, Job: ${data.job}`))
+      .catch(error => displayOutput(`PATCH Request - Error: ${error.message}`));
+
+    // Delete a user (DELETE request)
+    fetch('https://reqres.in/api/users/2', {
+      method: 'DELETE'
+    })
+      .then(response => {
+        if (response.ok) {
+          displayOutput('DELETE Request - User deleted successfully');
+        } else {
+          throw new Error('Failed to delete user');
+        }
+      })
+      .catch(error => displayOutput(`DELETE Request - Error: ${error.message}`));
+  </script>
+</body>
+</html>
