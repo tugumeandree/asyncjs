@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sitter Registration - DayStar Daycare</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-3">
+    <h2>Sitter Registration</h2>
+    <form id="sitterForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" id="location" name="location" required>
+      </div>
+      <!-- Add other required fields here -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div id="message" class="mt-3"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('sitterForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const location = document.getElementById('location').value;
+      // Add code to get other form values here
+
+      // Perform validation if needed
+
+      // Process form data (e.g., send it to a server) - This is just a placeholder
+      const message = document.getElementById('message');
+      message.innerHTML = `<div class="alert alert-success" role="alert">Thank you for registering, ${name}!</div>`;
+
+      // Reset the form
+      document.getElementById('sitterForm').reset();
+    });
+  </script>
+</body>
+</html>

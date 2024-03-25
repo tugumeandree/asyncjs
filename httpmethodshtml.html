@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Methods Demo</title>
+</head>
+<body>
+  <h1>HTTP Methods Demo</h1>
+  
+  <!-- Buttons for each HTTP method -->
+  <button onclick="fetchUsers()">GET Users</button>
+  <button onclick="createUser()">POST User</button>
+  <button onclick="updateUser()">PUT User</button>
+  <button onclick="partiallyUpdateUser()">PATCH User</button>
+  <button onclick="deleteUser()">DELETE User</button>
+  
+  <!-- Container for displaying API response -->
+  <div id="response"></div>
+
+  <script>
+    const apiUrl = 'https://reqres.in/api/users';
+
+    function displayResponse(message) {
+      document.getElementById('response').textContent = message;
+    }
+
+    function fetchUsers() {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          displayResponse(JSON.stringify(data, null, 2));
+        })
+        .catch(error => {
+          displayResponse('Error fetching users: ' + error.message);
+        });
+    }
+
+    function createUser() {
+      fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: 'John Doe',
+          job: 'Software Developer'
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          displayResponse(JSON.stringify(data, null, 2));
+        })
+        .catch(error => {
+          displayResponse('Error creating user: ' + error.message);
+        });
+    }
+
+    function updateUser() {
+      fetch(apiUrl + '/2', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: 'Jane Doe',
+          job: 'Product Manager'
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          displayResponse(JSON.stringify(data, null, 2));
+        })
+        .catch(error => {
+          displayResponse('Error updating user: ' + error.message);
+        });
+    }
+
+    function partiallyUpdateUser() {
+      fetch(apiUrl + '/2', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          job: 'Project Manager'
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          displayResponse(JSON.stringify(data, null, 2));
+        })
+        .catch(error => {
+          displayResponse('Error partially updating user: ' + error.message);
+        });
+    }
+
+    function deleteUser() {
+      fetch(apiUrl + '/2', {
+        method: 'DELETE'
+      })
+        .then(response => {
+          if (response.ok) {
+            displayResponse('User deleted successfully');
+          } else {
+            throw new Error('Failed to delete user');
+          }
+        })
+        .catch(error => {
+          displayResponse('Error deleting user: ' + error.message);
+        });
+    }
+  </script>
+</body>
+</html>
